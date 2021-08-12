@@ -1,0 +1,18 @@
+{% if post.comment %}
+<p>These are comments</p>
+    {% for post in post.comment %}
+        <ul>
+            <li>
+                <p>Comment by {{ post.comment.author }}</p>
+                {{ post.comment.body }}
+            </li>
+        </ul>
+    {% endfor %}
+    {% else %}
+    <h6>There are no comments yet for this post</h6>
+    {% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="SAVE">
+</form>
