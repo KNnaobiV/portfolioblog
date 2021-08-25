@@ -22,3 +22,4 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = ('name', 'post')
     list_display = ('name',)
     ordering = ('name',)
+    prepopulated_fields = {'slug': ('name',)}

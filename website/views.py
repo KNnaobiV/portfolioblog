@@ -32,3 +32,8 @@ class PostDetailView(DetailView, FormMixin):
         form.instance.post = Post.objects.get(pk=self.kwargs.get('pk'))
         form.save()
         return super(PostDetailView, self).form_valid(form)
+
+
+class TagListView(ListView):
+    model = Tag
+    context_object_name = 'tag'

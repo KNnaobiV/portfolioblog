@@ -36,10 +36,14 @@ class Comment(models.Model):
 
 
 class Tag(models.Model):
-    post = models.ManyToManyField(Post)
-    name = models.CharField(max_length=30)
+    post = models.ManyToManyField(Post, related_name="tag")
+    name = models.CharField(max_length=30, unique=True)
+    slug = models.SlugField(null=True)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('website:tag', args=[self.pk, self.slug])
     
     #implementation for all the post with particular tag

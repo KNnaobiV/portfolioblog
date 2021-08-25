@@ -1,16 +1,16 @@
 {% if post.comment %}
-<p>These are comments</p>
-    {% for post in post.comment %}
+<p>There are comments {{ post.comment.all.count}}</p>
+    {% for comment in post.comment.all %}
         <ul>
             <li>
-                <p>Comment by {{ post.comment.author }}</p>
-                {{ post.comment.body }}
+                <p>Comment by {{ comment.author }}</p>
+                {{ comment.body|linebreaks }}
             </li>
         </ul>
     {% endfor %}
-    {% else %}
+{% else %}
     <h6>There are no comments yet for this post</h6>
-    {% endif %}
+{% endif %}
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
