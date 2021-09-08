@@ -1,5 +1,5 @@
 {% if post.comment %}
-<p>There are comments {{ post.comment.all.count}}</p>
+<p>There are {{ post.comment.all.count}} comments</p>
     {% for comment in post.comment.all %}
         <ul>
             <li>

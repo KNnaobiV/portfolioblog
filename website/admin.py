@@ -4,11 +4,11 @@ from website.models import Post, Comment, Tag
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published', 'slug', 'published_status')
+    list_display = ('title', 'published', 'slug', 'published_status',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'body')
     ordering = ('published_status', 'published')
-    list_filter = ('title', 'body')
+    list_filter = ('title', 'body', 'tag')
 
 
 @admin.register(Comment)
@@ -22,4 +22,4 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = ('name', 'post')
     list_display = ('name',)
     ordering = ('name',)
-    prepopulated_fields = {'slug': ('name',)}
+    #prepopulated_fields = {'slug': ('name',)}

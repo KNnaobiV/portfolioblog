@@ -1,8 +1,7 @@
 {% if post.tag %}
-<p>there are tags</p>
     {% for tag in post.tag.all %}
         <ul>
-            <li><a href=>{{ tag.name }}</a></li>
+            <li><a href="{% url 'website:tag-detail' tag.name %}">{{ tag.name }}</a></li>
         </ul>
     {% endfor %}
 {% endif %}

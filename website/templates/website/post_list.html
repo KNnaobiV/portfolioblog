@@ -7,7 +7,9 @@
 {% block content%}
     {% if posts %}
         {% for post in posts %}
-            <a href="{{ post.get_absolute_url }}"><h2>{{ post.title }}</h2>
+            <ul>
+                <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+            </ul>
         {% endfor%}
     {% else %}
         <p>This user has no notes yet</p>

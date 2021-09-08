@@ -1,7 +1,6 @@
-from django.shortcuts import render, reverse
-from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
-from website.models import Post, Tag, Comment
+from django.shortcuts import render, reverse, get_object_or_404
+from django.views.generic import DetailView, ListView
+from website.models import Post, Comment, Tag
 from django.views.generic.edit import FormMixin
 from website.forms import CommentForm
 # Create your views here.
@@ -34,6 +33,11 @@ class PostDetailView(DetailView, FormMixin):
         return super(PostDetailView, self).form_valid(form)
 
 
-class TagListView(ListView):
-    model = Tag
+class TagDetailView(ListView):
+    model = Post
     context_object_name = 'tag'
+    template_name = 'website/tag_detail.html'
+
+    def get_queryset(self):
+        tag = get_object_or_404(Tag, name=self.kwargs.get('name'))
+        return Post.objects.filter(tag=tag)
