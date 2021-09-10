@@ -1,4 +1,5 @@
-from django.shortcuts import render, reverse, get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from django.views.generic import DetailView, ListView
 from website.models import Post, Comment, Tag
 from django.views.generic.edit import FormMixin

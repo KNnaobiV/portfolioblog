@@ -6,12 +6,13 @@
 
 {% block content%}
     {% if tag %}
-        {% for t in tag %}
+        {% for post in tag %}
             <ul>
                 <li>
-                    <a href="{{ t.get_absolute_url }}"><p>{{ t }}<p>
+                    <a href="{% url 'website:post-detail' pk=post.pk slug=post.slug %}"><p>{{ post }}<p>
                 </li>
             </ul>
             <p>There are {{ tag.count}} tags</p>
         {% endfor%}
     {% endif %}
+{% endblock %}

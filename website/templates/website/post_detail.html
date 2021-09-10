@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>{{ post.title}}</h1>
-    <h6>published on {{ post.published.date }}</h6>
+    <h6>published on {{ post.published}}</h6<><!--<p> by {{ post.author }}</p>-->
     {% include '../includes/tags.html' %}
     <p> {{ post.body }}</p>
     {% include '../includes/comments.html' %}

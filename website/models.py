@@ -1,6 +1,7 @@
 from django.db import models
-from django.utils import timezone
-from django.shortcuts import reverse
+#from django.utils import timezone
+from django.urls import reverse
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Tag(models.Model):
@@ -25,6 +26,7 @@ class Post(models.Model):
      max_length=10)
     published = models.DateTimeField(auto_now_add=True)
     tag = models.ManyToManyField(Tag, related_name='tag')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -37,7 +39,7 @@ class Comment(models.Model):
     STATUS = (('true', 'TRUE'), ('false', 'FALSE'),)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, 
     related_name='comment')
-    author = models.CharField(max_length=100, default='anonymous')
+    author = models.ForeignKey(User, default='anonymous', on_delete=models.CASCADE)
     email = models.EmailField()
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -47,5 +49,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.author} on {self.post}'
-
-

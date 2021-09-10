@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'published', 'slug', 'published_status',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title', 'body')
-    ordering = ('published_status', 'published')
+    ordering = ('published_status', 'published', 'author')
     list_filter = ('title', 'body', 'tag')
 
 
